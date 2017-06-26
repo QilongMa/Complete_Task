@@ -1,6 +1,5 @@
-# Star Wars - ReactJS Interview
-
-We welcome you and thank you for taking the time to do this coding assessment. Please read the guidelines before getting started.
+# Star Wars - ReactJS 
+This is an interview assessment from a start up company.
 
 ## Assessment Guidelines:
 
