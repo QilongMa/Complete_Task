@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../styles/Card.css';
 
 const Card = ({name, birth, image, homeworld}) => {

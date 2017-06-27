@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import './styles/App.css';
+import '../styles/App.css';
 import SearchBar from "./SearchBar.js"
-import star from './images/star.svg';
-import wars from './images/wars.svg';
+import star from '../images/star.svg';
+import wars from '../images/wars.svg';
 import { connect } from 'react-redux';
-import { fetchPeople, fetchPlanets} from './actions/index';
+import { fetchPeople, fetchPlanets, fetchMatch} from '../actions/index';
 import { bindActionCreators } from 'redux';
-import CardList from './containers/card-list';
+import CardList from '../components/card-list';
+import PageView from './page_view';
 
 class App extends Component {
     constructor(props){
@@ -24,7 +25,9 @@ class App extends Component {
           <img src={wars} alt="wars-logo" />
         </div>
         <SearchBar />
-        <CardList peopleList={this.props.peopleList} planetList = {this.props.planetList} />
+        <PageView />
+        <CardList peopleList={this.props.peopleList} planetList={this.props.planetList} />
+
       </div>
     );
   }
