@@ -4,19 +4,40 @@ import SearchBar from "./SearchBar.js"
 import star from '../images/star.svg';
 import wars from '../images/wars.svg';
 import { connect } from 'react-redux';
-import { fetchPeople, fetchPlanets, fetchMatch} from '../actions/index';
 import { bindActionCreators } from 'redux';
+import { fetchPeople, fetchPlanets} from '../actions/index';
 import CardList from '../components/card-list';
 import PageView from './page_view';
 
 class App extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            page : 1,
+            term : ""
+        }
+    }
+
+    componentDidMount(){
         this.props.fetchPeople();
         this.props.fetchPlanets();
     }
 
+    changeSearch(data = ""){
+        return this.setState({term : data}, ()=>{
+            this.props.fetchPeople(data, this.state.page);
+        })
+    }
+
+    changePage(page){
+
+        return this.setState({page: page}, ()=>{
+            this.props.fetchPeople(this.state.term, page);
+        })
+    }
+
   render() {
+
     return (
       <div className='content'>
         <div className='logo'>
@@ -24,8 +45,9 @@ class App extends Component {
           <span className='interview-text'>The Interview</span>
           <img src={wars} alt="wars-logo" />
         </div>
-        <SearchBar />
-        <PageView />
+        <SearchBar search_holder={this.changeSearch.bind(this)} />
+        <PageView page_holder={this.changePage.bind(this)} />
+
         <CardList peopleList={this.props.peopleList} planetList={this.props.planetList} />
 
       </div>
